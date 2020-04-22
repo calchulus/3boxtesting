@@ -1,0 +1,87 @@
+<script src="https://unpkg.com/3box/dist/3box.js"></script>
+
+<script> 
+	
+	function test() {
+
+var request = new XMLHttpRequest()
+
+address = document.getElementById("address").value 
+		url = "https://ipfs.3box.io/profile?address=" + address;
+		
+		console.log(url);
+
+request.open('GET', url, true)
+request.onload = function() {
+  // Begin accessing JSON data here
+  var data = JSON.parse(this.response)
+
+  if (request.status >= 200 && request.status < 400) {
+	 
+	  console.log(data);
+  console.log(data.name);
+	  username = data.name;
+	  console.log(data.description);
+	  desc = data.description;
+	  console.log(data.memberSince);
+	  date = data.memberSince;
+	  console.log(data.website);
+	  site = data.website;
+	  
+	  
+	  document.getElementById("jsonoutput").innerHTML = username + " <br> " + desc + " <br> " + date + " <br> " + site;
+		 
+  } else {
+    console.log('error')
+  }
+}
+
+request.send()
+
+	};
+</script>
+
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+	padding: 10px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Drip App</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet" />
+<!--    <link href="style.css" rel="stylesheet" />-->
+  </head>
+
+  <body>
+  <input id="address" placeholder="0x565B93a15d38aCD79c120b15432D21E21eD274d6" value="0x565B93a15d38aCD79c120b15432D21E21eD274d6" >
+	<button onclick=test()>Check Address</button>
+   <div class="card" id="jsonoutput"></div>
+   
+<!--    <script src="scripts.js"></script>-->
+  </body>
+</html>
+
+<html>
+
+	
+	
+	
+</html>
+
+
+
+
